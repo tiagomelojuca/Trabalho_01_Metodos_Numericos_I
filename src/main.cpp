@@ -6,9 +6,12 @@
 #include "isolamento.h"
 
 int main() {
+    // variáveis
     int opcao;
     bool continuar = true;
+    // intervalo
     std::vector<intervalo> intervalos;
+    double a, b;
 
     // padrão estabelecido
     double d0 = 0.5, e1 = 0.0001, e2 = 0.0001, maxIter = 30;
@@ -16,7 +19,9 @@ int main() {
 
     std::cout << std::fixed << std::setprecision(6);
 
+    // loop da interface no terminal
     while(continuar != false){
+        // MENU
         std::cout << " ======= MENU ======= " << std::endl <<
         "0 - Isolamento" << std::endl <<
         "1 - Refinamento" << std::endl << 
@@ -41,21 +46,20 @@ int main() {
             {
             // ============== FUNCAO PADRAO ============== 
             case 0:
-                double a1, b1;
                 std::cout << "f(d) = e^d - 4*d^2" << std::endl << std::endl <<
                 " ===== Escolha o intervalo inicial: =====" << std::endl <<
                 "Extremidade esquerda: ";
-                std::cin >> a1;
+                std::cin >> a;
                 std::cout << "Extremidade direita: ";
-                std::cin >> b1;
+                std::cin >> b;
                 std::cout << std::endl;
 
-                intervalos = isolamento(a1, b1, 1);
+                intervalos = isolamento(a, b, 1);
                 if(intervalos.size() == 0){
                     std::cout << "Nenhuma raiz foi encontrada. " << std::endl;
                 }
                 else{
-                    std::cout << std::setprecision(2) << "Intervalos com raizes encontrados entre " << a1 << " e " << b1 << ":" << std::endl;
+                    std::cout << std::setprecision(2) << "Intervalos com raizes encontrados entre " << a << " e " << b << ":" << std::endl;
                 for(int i = 0; i<intervalos.size(); ++i){
                     std::cout << "[" << std::setprecision(2) << intervalos[i].a << "," << intervalos[i].b <<
                     "]" << " ";
@@ -65,7 +69,6 @@ int main() {
                 break;
             // ============== FUNCAO COM A VARIADO ============== 
             case 1:
-                double a2, b2;
                 double A;
 
                 std::cout << 
@@ -78,17 +81,17 @@ int main() {
                 std::cout << "f(d) = " << std::setprecision(2) << A << "e^d - 4*d^2" << std::endl << std::endl <<
                 " ===== Escolha o intervalo inicial: =====" << std::endl <<
                 "Extremidade esquerda: ";
-                std::cin >> a2;
+                std::cin >> a;
                 std::cout << "Extremidade direita: ";
-                std::cin >> b2;
+                std::cin >> b;
                 std::cout << std::endl;
 
-                intervalos = isolamento(a2, b2, A);
+                intervalos = isolamento(a, b, A);
                 if(intervalos.size() == 0){
                     std::cout << "Nenhuma raiz foi encontrada. " << std::endl;
                 }
                 else{
-                    std::cout << std::setprecision(2) << "Intervalos com raizes encontrados entre " << a2 << " e " << b2 << ":" << std::endl;
+                    std::cout << std::setprecision(2) << "Intervalos com raizes encontrados entre " << a << " e " << b << ":" << std::endl;
                 for(int i = 0; i<intervalos.size(); ++i){
                     std::cout << "[" << std::setprecision(2) << intervalos[i].a << "," << intervalos[i].b <<
                     "]" << " ";
@@ -155,39 +158,39 @@ int main() {
                 break;
             case 1:
                 // ========== FUNCAO COM "A" VARIADO ==========
-                double a, novo_d0, novo_d1, e, a3, b3;
+                double A, novo_d0, novo_d1, e, a, b;
                 int index_intervalo;
                 // definindo valor de a
                 std::cout << 
                 "f(d) = a*e^d - 4*d^2" << std::endl << std::endl <<
                 " ======== Escolha o valor de 'a' ========" << std::endl <<
                 "Valor: ";
-                std::cin >> a;
+                std::cin >> A;
                 std::cout << std::endl;
 
                 // isolamento
-                std::cout << "f(d) = " << std::setprecision(2) << a << "e^d - 4*d^2" << std::endl << std::endl <<
+                std::cout << "f(d) = " << std::setprecision(2) << A << "e^d - 4*d^2" << std::endl << std::endl <<
                 " ======== Isolamento ========" << std::endl <<
                 "Extremidade esquerda: ";
-                std::cin >> a3;
+                std::cin >> a;
                 std::cout << "Extremidade direita: ";
-                std::cin >> b3;
+                std::cin >> b;
                 std::cout << std::endl;
 
-                intervalos = isolamento(a3, b3, a);
+                intervalos = isolamento(a, b, A);
                 if(intervalos.size() == 0){
                     std::cout << "Nenhuma raiz foi encontrada. " << std::endl;
                     break;
                 }
                 else{
-                    std::cout << std::setprecision(2) << "Intervalos com raizes encontrados entre " << a3 << " e " << b3 << ":" << std::endl;
+                    std::cout << std::setprecision(2) << "Intervalos com raizes encontrados entre " << a << " e " << b << ":" << std::endl;
                 for(int i = 0; i<intervalos.size(); ++i){
                     std::cout << "[" << std::setprecision(2) << intervalos[i].a << "," << intervalos[i].b <<
                     "]" << " ";
                 }
                 std::cout << std::endl;
                 }
-                // escolha o intervalo a ser refinado
+                // escolhendo o intervalo a ser refinado
                 std::cout << "======= Escolha o intervalo =======" << std::endl;
                 for(int i = 0; i<intervalos.size(); ++i){
                     std::cout << i <<" - [" << std::setprecision(2) << intervalos[i].a << "," << intervalos[i].b <<
@@ -209,7 +212,7 @@ int main() {
                 }
                 // escolher valor do erro absoluto  
                 std::cout << 
-                "f(d) = " << std::setprecision(2) << a << "*e^d - 4*d^2" << std::endl << std::endl <<
+                "f(d) = " << std::setprecision(2) << A << "*e^d - 4*d^2" << std::endl << std::endl <<
                 " ======== Escolha o valor do erro absoluto ========" << std::endl <<
                 "Erro: ";
                 std::cin >> e;
@@ -221,7 +224,7 @@ int main() {
 
                 // escolher método de refinamento
                 std::cout << 
-                "f(d) = " << std::setprecision(2) << a << "*e^d - 4*d^2" << std::endl << std::endl <<    
+                "f(d) = " << std::setprecision(2) << A << "*e^d - 4*d^2" << std::endl << std::endl <<    
                 " ======= METODOS DE REFINAMENTO =======" << std::endl << 
                 "0 - Metodo de Newton-Raphson" << std::endl <<
                 "1 - Metodo de Newton modificado" << std::endl <<
@@ -236,17 +239,17 @@ int main() {
                     // ============== NEWTON TRADICIONAL ==============
                 case 0:
                     std::cout << "\n======== METODO DE NEWTON-RAPHSON ========" << std::endl;
-                    std::cout << "Aproximacao: " << newton(novo_d0, e, e, maxIter, a) << std::endl;
+                    std::cout << "Aproximacao: " << newton(novo_d0, e, e, maxIter, A) << std::endl;
                     break;
                     // ============== NEWTON MODIFICADO ==============
                 case 1:
                     std::cout << "\n======== METODO DE NEWTON MODIFICADO ========" << std::endl;
-                    std::cout << "Aproximacao: " << newton_modificado(novo_d0, e, e, maxIter, a) << std::endl;
+                    std::cout << "Aproximacao: " << newton_modificado(novo_d0, e, e, maxIter, A) << std::endl;
                     break;
                     // ============== SECANTE TRADICIONAL ==============
                 case 2:
                     std::cout << "\n======== METODO DA SECANTE ========" << std::endl;
-                    std::cout << "Aproximacao: " << secante(novo_d0, novo_d1, e, e, maxIter, a) << std::endl;
+                    std::cout << "Aproximacao: " << secante(novo_d0, novo_d1, e, e, maxIter, A) << std::endl;
                     // ============== VOLTAR ==============
                 case 3:
                     break;

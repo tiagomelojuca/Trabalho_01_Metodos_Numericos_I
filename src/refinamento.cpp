@@ -4,7 +4,6 @@
 #include "funcao.h"
 #include "refinamento.h"
 
-#define D_0 0.5
 // ================= MÉTODO DE NEWTON-RAPHSON =================
 
 double newton(double d0, double e1, double e2, int maxIter, double a){
@@ -48,7 +47,7 @@ double newton(double d0, double e1, double e2, int maxIter, double a){
 // ================= MÉTODO DE NEWTON MODIFICADO =================
 
 double newton_modificado(double d0, double e1, double e2, int maxIter, double a){
-    double d1;
+    double d1, D_0 = d0;
     int k;
     // verificando se d0 já é uma aproximação válida
     if(std::abs(f_a(d0, a)) < e1) return d0;
