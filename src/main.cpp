@@ -4,6 +4,7 @@
 #include "funcao.h"
 #include "refinamento.h"
 #include "isolamento.h"
+#include "funcoes_aux.h"
 
 int main() {
     // variáveis
@@ -25,12 +26,8 @@ int main() {
         "1 - Sair" << std::endl <<
         "opcao: ";
         std::cin >> entrada;
-        std::cout << std::endl;
-        try {
-            opcao = stoi(entrada);
-        } catch(...) {
-            std::cout << "Erro: entre uma opcao valida." << std::endl << std::endl;
-        }
+        if(!validando_opcao(entrada, opcao))  
+            continue;
 
         switch (opcao)
         {
@@ -42,12 +39,8 @@ int main() {
             "2 - Voltar" << std::endl <<
             "opcao: ";
             std::cin >> entrada;
-            std::cout << std::endl;
-            try {
-                opcao = stoi(entrada);
-            } catch(...) {
-                std::cout << "Erro: entre uma opcao valida." << std::endl << std::endl;
-            }
+            if(!validando_opcao(entrada, opcao))  
+                continue;
 
             switch (opcao)
             {
@@ -62,12 +55,8 @@ int main() {
                 "3 - Voltar" << std::endl <<
                 "opcao: ";
                 std::cin >> entrada;
-                std::cout << std::endl;
-                try {
-                    opcao = stoi(entrada);
-                } catch(...) {
-                    std::cout << "Erro: entre uma opcao valida." << std::endl << std::endl;
-                }
+                if(!validando_opcao(entrada, opcao))  
+                    continue;
                 
 
                 switch (opcao)
@@ -143,12 +132,8 @@ int main() {
                 "3 - Voltar" << std::endl <<
                 "opcao: ";
                 std::cin >> entrada;
-                std::cout << std::endl;
-                try {
-                    opcao = stoi(entrada);
-                } catch(...) {
-                    std::cout << "Erro: entre uma opcao valida." << std::endl << std::endl;
-                }
+                if(!validando_opcao(entrada, opcao))  
+                    continue;
 
                 switch (opcao)
                 {
