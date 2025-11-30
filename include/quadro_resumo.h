@@ -81,7 +81,7 @@ public:
     tabela(
         size_t linhas,
         size_t colunas,
-        size_t tam_cels = 7u
+        size_t tam_cels = 8u
     ) :
         matriz(linhas, colunas),
         tam_cels(tam_cels),
@@ -218,11 +218,7 @@ private:
 // --------------------------------------------------------------------------
 
 std::string gera_quadro_resumo(
-    const std::vector<double>& entradas,
-    double d0,
-    double d1,
-    double err,
-    double maxIter
+    const std::vector<double>& entradas, double err, double maxIter
 );
 
 // --------------------------------------------------------------------------

@@ -226,7 +226,7 @@ int main() {
                     }
                 } while (A != 0.0);
 
-                std::cout << gera_quadro_resumo(entradas, d0, d1, err, maxIter) << std::endl;
+                std::cout << gera_quadro_resumo(entradas, err, maxIter) << std::endl;
             }
 
             break;

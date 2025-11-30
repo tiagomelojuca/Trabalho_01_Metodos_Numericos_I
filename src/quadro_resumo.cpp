@@ -2,10 +2,11 @@
 
 #include <iostream>
 
-#include "refinamento.h"
+#include "isolamento.h"
 #include "funcao.h"
+#include "refinamento.h"
 
-std::string gera_quadro_resumo(const std::vector<double>& entradas, double d0, double d1, double err, double maxIter)
+std::string gera_quadro_resumo(const std::vector<double>& entradas, double err, double maxIter)
 {
     std::cout.setstate(std::ios::failbit);
 
@@ -28,6 +29,10 @@ std::string gera_quadro_resumo(const std::vector<double>& entradas, double d0, d
     for (size_t i = 2; i <= entradas.size() + 1; i++)
     {
         const double A = entradas[i - 2];
+
+        auto interv = isolamento_para_f_com_A_variado(A);
+        const double d0 = interv.a;
+        const double d1 = interv.b;
 
         auto resultado_newton = newton(d0, err, err, maxIter, A);
         auto resultado_newton_mod = newton_modificado(d0, err, err, maxIter, A);
