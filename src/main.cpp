@@ -5,6 +5,7 @@
 #include "refinamento.h"
 #include "isolamento.h"
 #include "tratamento.h"
+#include "quadro_resumo.h"
 
 // interface no terminal
 int main() {
@@ -24,7 +25,8 @@ int main() {
         // MENU
         std::cout << " ======= MENU ======= " << std::endl <<
         "0 - Refinamento" << std::endl << 
-        "1 - Sair" << std::endl <<
+        "1 - Quadro-resumo" << std::endl << 
+        "2 - Sair" << std::endl <<
         "opcao: ";
         std::cin >> entrada;
         if(!validando_inteiro(entrada, opcao))  
@@ -201,8 +203,35 @@ int main() {
             }
             
             break;
-        // ============== SAIR ==============
+        // ============== QUADRO-RESUMO ==============
         case 1:
+            {
+                int i;
+                double err, A;
+                std::vector<double> entradas;
+
+                std::cout << "Digite a precisao desejada: ";
+                std::cin >> err;
+
+                i = 1;
+                std::cout << "Digite o i-esimo valor de a, ou 0 para finalizar" << '\n';
+                do {
+                    std::cout << "    a" << i << ": ";
+                    std::cin >> A;
+
+                    if (A != 0.0)
+                    {
+                        entradas.push_back(A);
+                        i++;
+                    }
+                } while (A != 0.0);
+
+                std::cout << gera_quadro_resumo(entradas, d0, d1, err, maxIter) << std::endl;
+            }
+
+            break;
+        // ============== SAIR ==============
+        case 2:
             continuar = false;
             break;
         default:
